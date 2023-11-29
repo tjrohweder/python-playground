@@ -27,4 +27,5 @@ json_data = {
     "b": random_number2(),
 }
 
-send_to_sqs()
+if __name__ == "__main__":
+    send_to_sqs()
