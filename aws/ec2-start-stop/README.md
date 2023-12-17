@@ -6,6 +6,11 @@ This is a simple script to start and stop EC2 instances.
 - Python 3.6+
 - boto3
 
+## Install dependencies
+```bash
+pip3 install -r requirements.txt
+```
+
 ## Usage
 ```bash
 python3 main.py [action] 
