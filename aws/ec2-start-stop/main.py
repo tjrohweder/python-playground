@@ -1,9 +1,9 @@
 import boto3
 import sys
 
+ec2 = boto3.client('ec2')
+
 def get_running_instances():
-    boto3.setup_default_session(region_name='us-east-1')
-    ec2 = boto3.client('ec2')
     running_instances = ec2.describe_instances()
 
     instances_ids = []
@@ -15,8 +15,6 @@ def get_running_instances():
     return instances_ids
 
 def ec2_action(instances_ids):
-    boto3.setup_default_session(region_name='us-east-1')
-    ec2 = boto3.client('ec2')
     action = sys.argv[1]
 
     if action == 'start':
