@@ -3,6 +3,8 @@ import json
 import base64
 import boto3
 
+queue_url = 'yor queue url'
+
 def random_number1():
     return random.randint(0, 100)
 
@@ -17,9 +19,7 @@ def encode_base64(json_data):
 
 def send_to_sqs():
     encoded_message = encode_base64(json_data)
-    boto3.setup_default_session(region_name='us-east-1')
     sqs = boto3.client('sqs')
-    queue_url = 'yor queue url'
     sqs.send_message(QueueUrl=queue_url, MessageBody=encoded_message)
 
 json_data = {
