@@ -1,5 +1,4 @@
-# Start and Stop EC2 instances
-This is a simple script to start and stop EC2 instances.
+# Send encoded JSON message to SQS queue
 
 ## Requirements
 - AWS credentials
@@ -19,11 +18,10 @@ export AWS_DEFAULT_REGION="region"
 pip3 install -r requirements.txt
 ```
 
+## Variables
+- queue_url: URL of the SQS queue
+
 ## Usage
 ```bash
-python3 main.py [action] 
+python3 main.py
 ```
-## Actions
-- start
-- stop
-- terminate
