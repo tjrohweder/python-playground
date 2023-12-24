@@ -1,2 +1,2 @@
-boto3
-pytz
+boto3==1.29.7
+pytz==2023.3.post1
