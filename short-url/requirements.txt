@@ -1,1 +1,1 @@
-pyshorteners
+pyshorteners==1.0.1
