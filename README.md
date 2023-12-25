@@ -11,9 +11,16 @@ The repository is structured as follows:
 
 ```bash
 root
-├── main.py
-├── README.md
-└── requirements.txt
+├── aws
+│   ├── ec2
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── READMNE.md
+│   └── README.md
+├── short-url
+    ├── README.md
+    ├── requirements.txt
+    └── main.py
 ```
 
 Each folder contains a collection of scripts that perform a specific task.  For example, the `aws` folder contains subfolders. Each subfolder relates to a specific automation for aws-related tasks, such as managing EC2 instances or sending messages to SQS queues.
