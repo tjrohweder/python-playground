@@ -3,7 +3,7 @@ import datetime
 import logging
 import pytz
 
-# iNTERVAL is the number of days to keep the EBS volumes
+# INTERVAL is the number of days to keep the EBS volumes
 INTERVAL = 30
 
 def get_ebs():
