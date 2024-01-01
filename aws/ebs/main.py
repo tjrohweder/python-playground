@@ -3,11 +3,12 @@ import datetime
 import logging
 import pytz
 
-interval = 30
+# iNTERVAL is the number of days to keep the EBS volumes
+INTERVAL = 30
 
 def get_ebs():
     now = datetime.datetime.now(pytz.utc)
-    start_time = now - datetime.timedelta(days=interval)
+    start_time = now - datetime.timedelta(days=INTERVAL)
     try:
         ebs = client.describe_volumes(
             Filters=[
