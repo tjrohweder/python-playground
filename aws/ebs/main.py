@@ -46,7 +46,7 @@ def delete_volumes(ebs_ids):
             elif confirmation == 'n':
                 logging.info('No volumes deleted')
             else:
-                logging.info('Invalid input')
+                logging.info(f"Invalid input: {confirmation}")
     except Exception as e:
         logging.error(f"Error deleting volumes: {e}")
         return []
