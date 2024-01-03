@@ -8,7 +8,7 @@ INTERVAL = 30
 
 def get_ebs():
     now = datetime.datetime.now(pytz.utc)
-    start_time = now - datetime.timedelta(seconds=INTERVAL)
+    start_time = now - datetime.timedelta(days=INTERVAL)
     try:
         ebs = client.describe_volumes(
             Filters=[
