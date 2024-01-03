@@ -8,7 +8,7 @@ INTERVAL = 30
 
 def get_ebs():
     now = datetime.datetime.now(pytz.utc)
-    start_time = now - datetime.timedelta(days=INTERVAL)
+    start_time = now - datetime.timedelta(seconds=INTERVAL)
     try:
         ebs = client.describe_volumes(
             Filters=[
@@ -35,14 +35,21 @@ def get_ebs():
 
 def delete_volumes(ebs_ids):
     try:
-        for volume in ebs_ids:
-            logging.info('Deleted volumes: ' + str(volume))
-            client.delete_volume(VolumeId=volume)
         if not ebs_ids:
             logging.info('No volumes to delete')
+        elif len(ebs_ids) >= 1:
+            confirmation = input('Are you sure you want to delete these volumes? [y/n]:' + str(ebs_ids))
+            if confirmation == 'y':
+                for volume in ebs_ids:
+                    logging.info('Deleted volumes: ' + str(volume))
+                    client.delete_volume(VolumeId=volume)
+            elif confirmation == 'n':
+                logging.info('No volumes deleted')
+            else:
+                logging.info('Invalid input')
     except Exception as e:
         logging.error(f"Error deleting volumes: {e}")
-        return []            
+        return []
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
