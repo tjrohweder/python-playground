@@ -53,6 +53,5 @@ def main():
     else:
         logging.error("No billing data found")
 
-
 if __name__ == "__main__":
     main()

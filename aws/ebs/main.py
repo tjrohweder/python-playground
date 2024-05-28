@@ -6,7 +6,11 @@ import pytz
 # INTERVAL is the number of days to keep the EBS volumes
 INTERVAL = 30
 
-def get_ebs():
+#Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def get_ebs(client):
     now = datetime.datetime.now(pytz.utc)
     start_time = now - datetime.timedelta(days=INTERVAL)
     try:
@@ -31,14 +35,14 @@ def get_ebs():
 
     except Exception as e:
         logging.error(f"Error fething volumes: {e}")
-        return []
 
-def delete_volumes(ebs_ids):
+
+def delete_volumes(client, ebs_ids):
     try:
         if not ebs_ids:
             logging.info('No volumes to delete')
         elif len(ebs_ids) >= 1:
-            confirmation = input('Are you sure you want to delete these volumes? [y/n]:' + str(ebs_ids))
+            confirmation = input('Are you sure you want to delete these volumes? [y/n]: ' + str(ebs_ids))
             if confirmation == 'y':
                 for volume in ebs_ids:
                     logging.info('Deleted volumes: ' + str(volume))
@@ -49,10 +53,15 @@ def delete_volumes(ebs_ids):
                 logging.info(f"Invalid input: {confirmation}")
     except Exception as e:
         logging.error(f"Error deleting volumes: {e}")
-        return []
+
+
+def main():
+    client = boto3.client('ec2')
+    ebs_ids = get_ebs(client)
+    if get_ebs:
+        delete_volumes(client, ebs_ids)
+    else:
+        logging.error("No volumes found")
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    client = boto3.client('ec2')
-    ebs_ids = get_ebs()
-    delete_volumes(ebs_ids)
+    main()

@@ -6,23 +6,7 @@ Welcome to the Python Automation Scripts repository! Here, you'll find a collect
 ## Motivation
 In today's fast-paced world, automation is key to increasing productivity and reducing manual work. These scripts have been created with the motivation to empower users like you to automate repetitive tasks, allowing you to focus on more creative and important aspects of your work.
 
-## Project structure
-The repository is structured as follows:
-
-```bash
-root
-├── aws
-│   ├── ec2
-│   │   ├── main.py
-│   │   ├── requirements.txt
-│   │   └── READMNE.md
-│   └── README.md
-├── short-url
-    ├── README.md
-    ├── requirements.txt
-    └── main.py
-```
-
+## Features
 Each folder contains a collection of scripts that perform a specific task.  For example, the `aws` folder contains subfolders. Each subfolder relates to a specific automation for aws-related tasks, such as managing EC2 instances or sending messages to SQS queues.
 
 ## Contributions
