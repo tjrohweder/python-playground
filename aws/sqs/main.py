@@ -4,13 +4,19 @@ import base64
 import logging
 import boto3
 
-queue_url = 'https://sqs.us-east-1.amazonaws.com/250566739804/test'
+#Setup Logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+QUEUE_URL = ''
 
 def random_number1():
     return random.randint(0, 100)
 
+
 def random_number2():
     return random.randint(0, 100)
+
 
 def encode_base64(json_data):
     message = json.dumps(json_data).encode('utf-8')
@@ -18,10 +24,11 @@ def encode_base64(json_data):
 
     return encoded_message
 
-def send_to_sqs():
+
+def send_to_sqs(client, json_data):
     try:
         encoded_message = encode_base64(json_data)
-        sqs.send_message(QueueUrl=queue_url, MessageBody=encoded_message)
+        client.send_message(QueueUrl=QUEUE_URL, MessageBody=encoded_message)
         logging.info(f"Message sent to SQS: {json_data}")
     except Exception as e:
         logging.error(f"Erorr sending message to SQS: {e}")
@@ -31,7 +38,9 @@ json_data = {
     "b": random_number2(),
 }
 
+def main():
+    client = boto3.client('sqs')
+    send_to_sqs(client, json_data)
+
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    sqs = boto3.client('sqs')
-    send_to_sqs()
+    main()
