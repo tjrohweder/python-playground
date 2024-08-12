@@ -21,7 +21,24 @@ def get_instances(client):
     except Exception as e:
         logging.error(f"Error fetching instances: {e}")
 
-def ec2_action(client, instances_ids):
+
+def get_instance_status(client):
+    try:
+        instances = client.describe_instances()
+
+        instance_status = []
+
+        for reservation in instances['Reservations']:
+            for instance in reservation['Instances']:
+                instances_ids.append(instance['State']['Name'])
+
+        return instance_status
+
+    except Exception as e:
+        logging.error(f"Error fetching instances: {e}")
+
+
+def ec2_action(client, instances_ids, instance_status):
     try:
         action = sys.argv[1]
         if action == 'list':
@@ -44,7 +61,6 @@ def ec2_action(client, instances_ids):
                     logging.info('Invalid action: ' + action)
             elif confirmation == 'n':
                 logging.info('No instances to ' + action)
-        
             else:
                 logging.info(f"Invalid input: {confirmation}")
                 logging.info('Action ' + action + ' is invalid')
@@ -56,8 +72,9 @@ def ec2_action(client, instances_ids):
 def main():
     client = boto3.client('ec2')
     instances_ids = get_instances(client)
+    instance_status = get_instance_status(client)
     if get_instances:
-        ec2_action(client, instances_ids)
+        ec2_action(client, instances_ids, instance_status)
     else:
         logging.error("No instances to perform actions")
 
