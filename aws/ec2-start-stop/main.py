@@ -30,19 +30,19 @@ def get_instance_status(client):
 
         for reservation in instances['Reservations']:
             for instance in reservation['Instances']:
-                instances_ids.append(instance['State']['Name'])
+                instance_status.append(instance['State']['Name'])
 
         return instance_status
 
     except Exception as e:
-        logging.error(f"Error fetching instances: {e}")
+        logging.error(f"Error fetching instance status: {e}")
 
 
 def ec2_action(client, instances_ids, instance_status):
     try:
         action = sys.argv[1]
         if action == 'list':
-            logging.info('Instances available: ' + str(instances_ids))
+            logging.info('Instances available: ' + str(instances_ids) + ' - ' + str(instance_status))
 
         else:
             confirmation = input('Are you sure you want to ' + action + ' these instances? [y/n]: \n' + str(instances_ids))
