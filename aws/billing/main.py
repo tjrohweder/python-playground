@@ -2,16 +2,13 @@ import boto3
 import logging
 from datetime import date
 
-# Constants
 START_DATE = "2024-05-01"
 PERIOD = "DAILY"
 COST_TYPE = "BlendedCost"
 
-# Setup logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logging = logging.getLogger(__name__)
 
-# Get today's date
 today = date.today()
 end_date = today.strftime("%Y-%m-%d")
 
@@ -43,7 +40,7 @@ def output_format(billing):
         start_date = amount['TimePeriod']['Start']
         cost = float(amount['Total'][COST_TYPE]['Amount'])
         print(f"{start_date} | ${cost:,.2f}")
-        
+
 
 def main():
     client = boto3.client('ce')
