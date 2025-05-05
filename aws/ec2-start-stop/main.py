@@ -2,9 +2,8 @@ import boto3
 import logging
 import sys
 
-#Setup Logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logging = logging.getLogger(__name__)
 
 def get_instances(client):
     try:
