@@ -1,5 +1,3 @@
-import time
-
 number = int(input("Please type a number: "))
 
 for i in range(1, 11):
