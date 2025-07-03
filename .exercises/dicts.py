@@ -1,41 +1,38 @@
-cadastros = []
+registrations = []
 
 while True:
-    nome = input("Digite o nome (ou 'sair' para encerrar): ")
-    if nome.lower() == 'sair':
+    name = input("Enter name (or type 'exit' to finish): ")
+    if name.lower() == 'exit':
         break
 
-    idade = int(input("Digite a idade: "))
-    cidade = input("Digite a cidade: ")
+    age = int(input("Enter age: "))
+    city = input("Enter city: ")
 
-    pessoa = {
-        "nome": nome,
-        "idade": idade,
-        "cidade": cidade
+    person = {
+        "name": name,
+        "age": age,
+        "city": city
     }
 
-    cadastros.append(pessoa)
+    registrations.append(person)
 
-# Total de pessoas
-print(f"\nTotal de pessoas cadastradas: {len(cadastros)}")
+print(f"\nTotal people registered: {len(registrations)}")
 
-# Cidades únicas
-cidades = set()
-for pessoa in cadastros:
-    cidades.add(pessoa["cidade"])
+unique_cities = set()
+for person in registrations:
+    unique_cities.add(person["city"])
 
-print("Cidades únicas:")
-for cidade in cidades:
-    print("-", cidade)
+print("Unique cities:")
+for city in unique_cities:
+    print("-", city)
 
-# Busca por nome (opcional)
-busca = input("\nDigite um nome para buscar (ou pressione Enter para pular): ")
-if busca:
-    encontrou = False
-    for pessoa in cadastros:
-        if pessoa["nome"].lower() == busca.lower():
-            print(f"{pessoa['nome']} tem {pessoa['idade']} anos e mora em {pessoa['cidade']}.")
-            encontrou = True
+search = input("\nEnter a name to search (or press Enter to skip): ")
+if search:
+    found = False
+    for person in registrations:
+        if person["name"].lower() == search.lower():
+            print(f"{person['name']} is {person['age']} years old and lives in {person['city']}.")
+            found = True
             break
-    if not encontrou:
-        print("Pessoa não encontrada.")
+    if not found:
+        print("Person not found.")
