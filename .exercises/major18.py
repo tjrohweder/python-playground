@@ -9,7 +9,7 @@ age = current_year - birth
 
 try:
     if age >= 18:
-        print("Ok, you are old enought to watch those ladies")
+        print("You're old enough")
 
     else:
         print("Go talk to your mama")
