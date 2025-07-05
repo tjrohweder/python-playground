@@ -41,7 +41,9 @@ def ec2_action(client, instances_ids, instance_status):
     try:
         action = sys.argv[1]
         if action == 'list':
-            logging.info(f'Instances available: {instances_ids} - {instance_status}')
+            logging.info('Instances available:')
+            for instance_id, status in zip(instances_ids, instance_status):
+                logging.info(f'{instance_id} - {status}')
 
         else:
             confirmation = input(f'Are you sure you want to {action} these instances? [y/n]: \n {instances_ids}')
