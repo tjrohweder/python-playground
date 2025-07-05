@@ -2,7 +2,7 @@ import boto3
 import logging
 import sys
 
-logging.basicConfig(level=logging.INFO, format='%(message)s')
+logging.basicConfig(level=logging.INFO, format='%(levelname)s :: %(message)s')
 logging = logging.getLogger(__name__)
 
 def get_instances(client):
@@ -46,7 +46,7 @@ def ec2_action(client, instances_ids, instance_status):
                 logging.info(f'{instance_id} - {status}')
 
         else:
-            confirmation = input(f'Are you sure you want to {action} these instances? [y/n]: \n {instances_ids}')
+            confirmation = input(f'Are you sure you want to {action} these instances? {instances_ids} [y/n]: ')
             if confirmation == 'y':
                 if action == 'start':
                     logging.info(f'Starting instances: {instances_ids}')
