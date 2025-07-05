@@ -2,7 +2,7 @@ import boto3
 import logging
 import sys
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 logging = logging.getLogger(__name__)
 
 def get_instances(client):
