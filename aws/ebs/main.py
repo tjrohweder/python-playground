@@ -42,17 +42,17 @@ def delete_volumes(client, ebs_ids):
         if not ebs_ids:
             logger.info('No volumes to delete')
         elif len(ebs_ids) >= 1:
-            confirmation = input('Are you sure you want to delete these volumes? [y/n]: ' + str(ebs_ids))
+            confirmation = input(f'Are you sure you want to delete these volumes? [y/n]: {ebs_ids}')
             if confirmation == 'y':
                 for volume in ebs_ids:
-                    logger.info('Deleted volumes: ' + str(volume))
+                    logger.info(f'Deleted volumes: {volume}')
                     client.delete_volume(VolumeId=volume)
             elif confirmation == 'n':
                 logger.info('No volumes deleted')
             else:
-                logger.info(f"Invalid input: {confirmation}")
+                logger.info(f'Invalid input: {confirmation}')
     except Exception as e:
-        logger.error(f"Error deleting volumes: {e}")
+        logger.error(f'Error deleting volumes: {e}')
 
 
 def main():
