@@ -23,9 +23,10 @@ pip3 install -r requirements.txt
 
 ## Usage
 ```bash
-python3 main.py [action] 
+python3 main.py [action]
 ```
 ## Actions
+- list
 - start
 - stop
 - terminate
