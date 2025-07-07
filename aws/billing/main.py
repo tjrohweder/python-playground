@@ -7,7 +7,7 @@ PERIOD = "DAILY"
 COST_TYPE = "BlendedCost"
 
 logging.basicConfig(level=logging.INFO)
-logging = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 today = date.today()
 end_date = today.strftime("%Y-%m-%d")
@@ -29,7 +29,7 @@ def get_billing(client, start_date, end_date, period, cost_type):
         return billing
 
     except Exception as e:
-        logging.error(f"Error fetching billing: {e}")
+        logger.error(f"Error fetching billing: {e}")
         return None
 
 
@@ -48,7 +48,7 @@ def main():
     if billing:
         output_format(billing)
     else:
-        logging.error("No billing data found")
+        logger.error("No billing data found")
 
 if __name__ == "__main__":
     main()
