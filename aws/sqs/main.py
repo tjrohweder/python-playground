@@ -29,9 +29,10 @@ def send_to_sqs(client, json_data):
     try:
         encoded_message = encode_base64(json_data)
         client.send_message(QueueUrl=QUEUE_URL, MessageBody=encoded_message)
-        logging.info(f"Message sent to SQS: {json_data}")
+        logger.info(f"Message sent to SQS: {json_data}")
+
     except Exception as e:
-        logging.error(f"Erorr sending message to SQS: {e}")
+        logger.error(f"Erorr sending message to SQS: {e}")
 
 json_data = {
     "a": random_number1(),
