@@ -4,7 +4,6 @@ import base64
 import logging
 import boto3
 
-#Setup Logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
