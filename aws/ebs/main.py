@@ -3,10 +3,8 @@ import datetime
 import logging
 import pytz
 
-# Number of days to keep the EBS volumes
-INTERVAL = 30
+INTERVAL = 30 #days
 
-#Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
