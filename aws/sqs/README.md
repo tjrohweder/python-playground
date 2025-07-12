@@ -15,7 +15,7 @@ export AWS_DEFAULT_REGION="region"
 
 ## Install dependencies
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Variables
@@ -23,5 +23,5 @@ pip3 install -r requirements.txt
 
 ## Usage
 ```bash
-python3 main.py
+python main.py
 ```

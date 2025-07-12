@@ -18,12 +18,12 @@ AWS CLI default profile will also be detected
 
 ## Install dependencies
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
 ```bash
-python3 main.py [action]
+python main.py [action]
 ```
 ## Actions
 - list
