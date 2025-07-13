@@ -22,11 +22,11 @@ if choice in ('1', '2', '3'):
         number2 = int(input("Enter the second number: "))
 
         if choice == '1':
-            print(f"Resultado: {add(number1, number2)}")
+            print(f"Result: {add(number1, number2)}")
         elif choice == '2':
-            print(f"Resultado: {subtract(number1, number2)}")
+            print(f"Result: {subtract(number1, number2)}")
         elif choice == '3':
-            print(f"Resultado: {multiply(number1, number2)}")
+            print(f"Result: {multiply(number1, number2)}")
 
     except ValueError:
         print("Invalid input")
