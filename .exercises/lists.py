@@ -3,7 +3,7 @@ list = ["grapes", "cereal", "popcorn"]
 while True:
 
     print("1 - List all items in the grocery list")
-    print("2 - Add add new item to te list")
+    print("2 - Add add new item in te list")
     print("3 - Remove a item from the list")
 
     action = int(input("Please select the desired action: 1/2/3\n"))
@@ -25,4 +25,4 @@ while True:
         else:
             print(f"The option {action} is not valid")
     except Exception as e:
-        print(f"The folliwing error happened: {e}")
+        print(f"The following error happened: {e}")
