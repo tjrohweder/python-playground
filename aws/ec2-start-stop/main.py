@@ -18,7 +18,7 @@ def get_instances(client):
         return instances_ids
 
     except Exception as e:
-        logger.error(f"Error fetching instances: {e}")
+        logger.error(f'Error fetching instances: {e}')
 
 
 def get_instance_status(client):
@@ -34,7 +34,7 @@ def get_instance_status(client):
         return instance_status
 
     except Exception as e:
-        logger.error(f"Error fetching instance status: {e}")
+        logger.error(f'Error fetching instance status: {e}')
 
 
 def ec2_action(client, instances_ids, instance_status):
@@ -62,10 +62,10 @@ def ec2_action(client, instances_ids, instance_status):
             elif confirmation == 'n':
                 logger.info(f'No instances to {action}')
             else:
-                logger.error(f"Invalid input: {confirmation}")
+                logger.error(f'Invalid input: {confirmation}')
 
     except Exception as e:
-        logger.error(f"Unable to perform action, {e}")
+        logger.error(f'Unable to perform action, {e}')
 
 
 def main():
@@ -75,7 +75,7 @@ def main():
     if get_instances:
         ec2_action(client, instances_ids, instance_status)
     else:
-        logger.error("No instances to perform actions")
+        logger.error('No instances to perform actions')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

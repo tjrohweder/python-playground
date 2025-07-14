@@ -28,19 +28,19 @@ def send_to_sqs(client, json_data):
     try:
         encoded_message = encode_base64(json_data)
         client.send_message(QueueUrl=QUEUE_URL, MessageBody=encoded_message)
-        logger.info(f"Message sent to SQS: {json_data}")
+        logger.info(f'Message sent to SQS: {json_data}')
 
     except Exception as e:
-        logger.error(f"Erorr sending message to SQS: {e}")
+        logger.error(f'Erorr sending message to SQS: {e}')
 
 json_data = {
-    "a": random_number1(),
-    "b": random_number2(),
+    'a': random_number1(),
+    'b': random_number2(),
 }
 
 def main():
     client = boto3.client('sqs')
     send_to_sqs(client, json_data)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
