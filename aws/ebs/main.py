@@ -32,7 +32,7 @@ def get_ebs(client):
         return ebs_ids
 
     except Exception as e:
-        logger.error(f"Error fething volumes: {e}")
+        logger.error(f'Error fething volumes: {e}')
 
 
 def delete_volumes(client, ebs_ids):
@@ -59,7 +59,7 @@ def main():
     if get_ebs:
         delete_volumes(client, ebs_ids)
     else:
-        logger.error("No volumes found")
+        logger.error('No volumes found')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
