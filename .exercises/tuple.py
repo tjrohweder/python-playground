@@ -1,3 +1,3 @@
-fruits = ("apple", "banana")
+fruits = ('apple', 'banana')
 
 print(fruits)
