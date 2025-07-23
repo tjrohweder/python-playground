@@ -10,7 +10,7 @@ while True:
 
     try:
         if action == 1:
-            print('Here's your grocery list for today:')
+            print("Here's your grocery list for today:")
             for item in list:
                 print(item)
         elif action == 2:
