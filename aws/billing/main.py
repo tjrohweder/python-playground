@@ -2,7 +2,7 @@ import boto3
 import logging
 from datetime import date
 
-START_DATE = '2024-05-01'
+START_DATE = '2025-01-01'
 PERIOD = 'DAILY'
 COST_TYPE = 'BlendedCost'
 
