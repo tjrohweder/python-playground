@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=An0thrS3crt
+      - MYSQL_USER=app_user
+      - MYSQL_DATABASE=app_db
+    ports:
+      - 3306:3306
+
+  app:
+    depends_on:
+      - db
+    build: ./
+    restart: on-failure
+    ports:
+      - 5000:5000
