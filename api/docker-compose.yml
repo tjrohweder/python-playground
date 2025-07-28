@@ -10,11 +10,21 @@ services:
       - MYSQL_DATABASE=app_db
     ports:
       - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
 
   app:
-    depends_on:
-      - db
     build: ./
+    depends_on:
+      db:
+        condition: service_healthy
     restart: on-failure
     ports:
       - 5000:5000
+
+volumes:
+  db_data:
