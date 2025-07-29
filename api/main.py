@@ -37,5 +37,19 @@ def post_date():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/list', methods=['GET'])
+def list_entries():
+    try:
+        query = dates_table.select()
+        result = conn.execute(query)
+        rows = result.fetchall()
+
+        entries = [{'id': row[0], 'value': row[1]} for row in rows]
+
+        return jsonify(entries)
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
