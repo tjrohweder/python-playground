@@ -1,9 +1,17 @@
 from flask import Flask, jsonify, request
 import sqlalchemy as db
 import subprocess
+import os
 
 app = Flask(__name__)
-engine = db.create_engine("mysql+mysqlconnector://app_user:An0thrS3crt@db:3306/app_db")
+db_host = os.getenv('DB_HOST')
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
+db_name = os.getenv('DB_NAME')
+db_port = os.getenv('DB_PORT')
+engine = db.create_engine(
+    f"mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+)
 conn = engine.connect()
 metadata = db.MetaData()
 
