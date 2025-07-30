@@ -3,6 +3,7 @@ version: "3.8"
 services:
   db:
     image: mysql:8.4
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=S3cret
       - MYSQL_PASSWORD=An0thrS3crt
@@ -15,13 +16,22 @@ services:
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
+      timeout: 5s
       retries: 5
 
   app:
-    build: ./
+    build:
+      context: ./
+      dockerfile: Dockerfile
     depends_on:
       db:
         condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: app_db
+      DB_USER: app_user
+      DB_PASSWORD: An0thrS3crt
     restart: on-failure
     ports:
       - 5000:5000
