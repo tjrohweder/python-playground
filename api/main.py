@@ -51,5 +51,14 @@ def list_entries():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/delete', methods=['DELETE'])
+def delete_entries():
+    try:
+        query = dates_table.delete()
+        conn.execute(query)
+        return jsonify({'message': 'All entries deleted'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
