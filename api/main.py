@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
 import sqlalchemy as db
-import subprocess
 import os
 
 app = Flask(__name__)
@@ -23,11 +22,6 @@ dates_table = db.Table(
 )
 
 metadata.create_all(engine)
-
-@app.route('/date', methods=['GET'])
-def get_date():
-    date = subprocess.check_output(['date']).decode('utf-8').strip()
-    return jsonify({'date': date})
 
 @app.route('/add', methods=['POST'])
 def post_date():
