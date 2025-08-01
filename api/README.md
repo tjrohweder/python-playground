@@ -16,9 +16,9 @@ docker run -d python-api -p 5000:5000 python-api:latest
 ### Docker Compose
 1 - Spin up the environemnt
 ```bash
-docker compose up --detach
+docker compose up --build --detach
 ```
-2 - Clean up environment
+2 - Clean up the environment
 ```bash
-docker compose down
+docker compose down -v
 ```
