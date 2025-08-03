@@ -1,6 +1,35 @@
 from flask import Flask, jsonify, request
+from logging.config import dictConfig
 import sqlalchemy as db
 import os
+
+dictConfig({
+    'version': 1,
+    'formatters': {
+        'default': {
+            'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+        }
+    },
+    'handlers': {
+        'wsgi': {
+            'class': 'logging.StreamHandler',
+            'stream': 'ext://flask.logging.wsgi_errors_stream',
+            'formatter': 'default',
+        }
+    },
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['wsgi']
+    },
+    'loggers': {
+        'werkzeug': {
+            'level': 'WARNING',
+            'handlers': ['wsgi'],
+            'propagate': False
+        }
+    }
+})
+
 
 app = Flask(__name__)
 db_host = os.getenv('DB_HOST')
@@ -30,14 +59,17 @@ def post_date():
         date_value = data.get('date')
 
         if not date_value:
-            return jsonify({'error': 'Missing "date" in request body'}), 400
+            app.logger.error('Missing "date" in request body')
+            return jsonify('Bad Request'), 400
 
         ins = dates_table.insert().values(value=date_value)
         conn.execute(ins)
 
-        return jsonify({'message': 'Date added successfully'}), 201
+        return '', 201
+
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        app.logger.error('An error accurred: %s', e)
+        return 'Internal Server Error', 500
 
 @app.route('/list', methods=['GET'])
 def list_entries():
