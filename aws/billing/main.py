@@ -13,7 +13,7 @@ today = date.today()
 end_date = today.strftime('%Y-%m-%d')
 
 
-def get_billing(client, start_date, end_date, period, cost_type):
+def get_billing(client, start_date, end_date):
     try:
         billing = client.get_cost_and_usage(
             TimePeriod={
