@@ -60,7 +60,7 @@ def post_date():
 
         if not date_value:
             app.logger.error('Missing "date" in request body')
-            return jsonify('Bad Request'), 400
+            return jsonify({'error': 'Bad Request' }), 400
 
         ins = dates_table.insert().values(value=date_value)
         conn.execute(ins)
@@ -77,22 +77,25 @@ def list_entries():
         query = dates_table.select()
         result = conn.execute(query)
         rows = result.fetchall()
-
         entries = [{'id': row[0], 'value': row[1]} for row in rows]
 
         return jsonify(entries)
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        app.logger.error('Error retrieving database entries: %s', e)
+        return jsonify({'error': 'Internal Server Error'}), 500
 
 @app.route('/delete', methods=['DELETE'])
 def delete_entries():
     try:
         query = dates_table.delete()
         conn.execute(query)
-        return jsonify({'message': 'All entries deleted'})
+        app.logger.info('Database entries deleted')
+        return '', 204
+
     except Exception as e:
-        return jsonify({'error': str(e)})
+        app.logger.error('Error deleting database entries: %s', e)
+        return jsonify({'error': 'Internal Server Error'}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
