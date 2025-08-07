@@ -53,7 +53,7 @@ dates_table = db.Table(
 metadata.create_all(engine)
 
 @app.route('/add', methods=['POST'])
-def post_date():
+def add_date():
     try:
         data = request.get_json()
         date_value = data.get('date')
